@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déclaration de jeton token mwollowm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        #tokenForm {
+            margin-bottom: 20px;
+        }
+
+        #tokenList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #tokenList li {
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            padding: 10px;
+        }
+
+        #tokenCount {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Déclaration de jeton token mwollowm</h1>
+
+    <form id="tokenForm">
+        <label for="tokenName">Nom du jeton :</label>
+        <input type="text" id="tokenName" required>
+        <button type="button" onclick="declareToken()">Déclarer le jeton</button>
+    </form>
+
+    <h2>Liste des jetons déclarés :</h2>
+    <ul id="tokenList"></ul>
+
+    <p id="tokenCount"></p>
+
+    <script>
+        function declareToken() {
+            var tokenName = document.getElementById('tokenName').value;
+
+            if (tokenName) {
+                var date = new Date();
+                var declarationTime = date.toLocaleString();
+                var randomNumber = Math.floor(Math.random() * 1000000) + 1;
+
+                var tokenItem = document.createElement('li');
+                tokenItem.innerHTML = `<strong>${tokenName}</strong> - Déclaré le ${declarationTime}, Numéro aléatoire : ${randomNumber} <button onclick="validateToken('${tokenName}')">Valider</button>`;
+
+                document.getElementById('tokenList').appendChild(tokenItem);
+                document.getElementById('tokenCount').innerText = `Nombre de jetons déclarés : ${document.getElementById('tokenList').childElementCount}`;
+            }
+        }
+
+        function validateToken(tokenName) {
+            var isTokenValid = confirm(`Valider la déclaration du jeton ${tokenName} ?`);
+
+            if (isTokenValid) {
+                // Vous pouvez ajouter ici la logique de validation côté serveur
+                alert(`La déclaration du jeton ${tokenName} a été validée.`);
+            } else {
+                // Vous pouvez ajouter ici la logique de rejet côté serveur
+                alert(`La déclaration du jeton ${tokenName} a été refusée.`);
+            }
+        }
+    </script>
+</body>
+</html>
