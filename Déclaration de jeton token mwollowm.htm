@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déclaration de jeton token mwollowm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        #tokenForm {
+            margin-bottom: 20px;
+        }
+
+        #tokenList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #tokenList li {
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            padding: 10px;
+        }
+
+        #tokenCount {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Déclaration de jeton token mwollowm</h1>
+
+    <form id="tokenForm">
+        <label for="tokenName">Nom du jeton :</label>
+        <input type="text" id="tokenName" required="" value="choix">
+        <button type="button" onclick="declareToken()">Déclarer le jeton</button>
+    </form>
+
+    <h2>Liste des jetons déclarés :</h2>
+    <ul id="tokenList"><li><strong>Aso</strong> - Déclaré le 05/09/2024 22:28:19, Numéro aléatoire : 938741 <button onclick="validateToken('Aso')">Valider</button></li><li><strong>bébé</strong> - Déclaré le 05/09/2024 22:28:30, Numéro aléatoire : 949948 <button onclick="validateToken('bébé')">Valider</button></li><li><strong>co</strong> - Déclaré le 05/09/2024 22:28:35, Numéro aléatoire : 508425 <button onclick="validateToken('co')">Valider</button></li><li><strong>tri</strong> - Déclaré le 05/09/2024 22:28:42, Numéro aléatoire : 920607 <button onclick="validateToken('tri')">Valider</button></li><li><strong>lev</strong> - Déclaré le 05/09/2024 22:28:56, Numéro aléatoire : 851527 <button onclick="validateToken('lev')">Valider</button></li><li><strong>choix</strong> - Déclaré le 05/09/2024 22:29:05, Numéro aléatoire : 405042 <button onclick="validateToken('choix')">Valider</button></li><li><strong>choix</strong> - Déclaré le 05/09/2024 22:29:21, Numéro aléatoire : 986268 <button onclick="validateToken('choix')">Valider</button></li><li><strong>choix</strong> - Déclaré le 05/09/2024 22:29:23, Numéro aléatoire : 397498 <button onclick="validateToken('choix')">Valider</button></li></ul>
+
+    <p id="tokenCount">Nombre de jetons déclarés : 8</p>
+
+    <script>
+        function declareToken() {
+            var tokenName = document.getElementById('tokenName').value;
+
+            if (tokenName) {
+                var date = new Date();
+                var declarationTime = date.toLocaleString();
+                var randomNumber = Math.floor(Math.random() * 1000000) + 1;
+
+                var tokenItem = document.createElement('li');
+                tokenItem.innerHTML = `<strong>${tokenName}</strong> - Déclaré le ${declarationTime}, Numéro aléatoire : ${randomNumber} <button onclick="validateToken('${tokenName}')">Valider</button>`;
+
+                document.getElementById('tokenList').appendChild(tokenItem);
+                document.getElementById('tokenCount').innerText = `Nombre de jetons déclarés : ${document.getElementById('tokenList').childElementCount}`;
+            }
+        }
+
+        function validateToken(tokenName) {
+            var isTokenValid = confirm(`Valider la déclaration du jeton ${tokenName} ?`);
+
+            if (isTokenValid) {
+                // Vous pouvez ajouter ici la logique de validation côté serveur
+                alert(`La déclaration du jeton ${tokenName} a été validée.`);
+            } else {
+                // Vous pouvez ajouter ici la logique de rejet côté serveur
+                alert(`La déclaration du jeton ${tokenName} a été refusée.`);
+            }
+        }
+    </script>
+
+
+</body></html>
